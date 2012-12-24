@@ -1,10 +1,13 @@
 // ==UserScript==
-// @name		   Trello Tabs
-// @namespace	   ME
-// @description    Pin Trello Boards As Tabs
-// @include		   https://trello.com/*
-// @run-at document-end
-// @require		  http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
+// @name          Trello Tabs
+// @namespace     https://github.com/ianhalpern
+// @description   Pin Trello Boards As Tabs
+// @include       https://trello.com/*
+// @run-at        document-end
+// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
+// @downloadURL   https://raw.github.com/ianhalpern/trello-tabs/master/trello-tabs.user.js
+// @updateURL     https://raw.github.com/ianhalpern/trello-tabs/master/trello-tabs.user.js
+// @version       0.1
 // ==/UserScript==
 
 String.prototype.title = function () {
@@ -55,7 +58,8 @@ TrelloTabs.prototype.savePinnedBoardList = function() {
 
 TrelloTabs.prototype.redraw = function() {
 
-	$( this.container ).html( '<a class="header-btn header-boards woof-crouch" href="#"> <span class="app-icon light board-icon"></span></a>' )
+	$( this.container ).html( '<a class="header-btn header-boards woof-crouch" style="padding:0" href="#">'
+		+ '<span class="app-icon light label-icon" style="background-position: -180px -60px;"></span></a>' )
 
 	var $this = this
 	$( this.container ).find('a').click( function() { $this.toggleTab() } )
