@@ -8,7 +8,7 @@
 // @require       https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js
 // @downloadURL   https://raw.github.com/ianhalpern/trello-tabs/master/trello-tabs.user.js
 // @updateURL     https://raw.github.com/ianhalpern/trello-tabs/master/trello-tabs.user.js
-// @version       0.1
+// @version       0.2
 // ==/UserScript==
 
 String.prototype.title = function () {
@@ -36,18 +36,22 @@ Array.prototype.remove = function() {
 
 var TrelloTabs = function() {
 	var $this = this
+
 	this.main_container = document.createElement('div')
 	this.main_container.setAttribute( "style", "position: absolute; top: 5px; left: 450px; right: 265px;")
-	$( this.main_container ).html( '<a class="header-btn header-boards woof-crouch" style="padding:0" href="#">'
-		+ '<span class="app-icon light label-icon" style="background-position: -180px -60px;"></span></a>' )
+	$( this.main_container ).html( '<a class="header-btn header-boards" style="padding:0" href="#">'
+		+ '<span class="header-btn-icon icon-lg icon-label light" style="background-position: -180px -60px;"></span></a>' )
 	$( this.main_container ).find('a').click( function() { $this.toggleTab() } )
 
 	this.scroll_window = document.createElement('div')
 	this.scroll_window.setAttribute( "style", "position: absolute; top: 0px; left: 45px; right: 0px; overflow:hidden")
+
 	this.container_outer = document.createElement('div')
 	this.container_outer.setAttribute( "style", "position: relative;margin-left:0px;width: 4000px;")
+
 	this.container = document.createElement('div')
 	this.container.setAttribute( "style", "position: relative;float:left;")
+
 	$( document.body ).append( this.main_container )
 	$( this.main_container ).append( this.scroll_window )
 	$( this.scroll_window ).append( this.container_outer )
@@ -90,8 +94,8 @@ TrelloTabs.prototype.redraw = function() {
 	for ( var i = 0; i < this.pinned_boards.length; i++ ) {
 		var name = this.pinned_boards[i].substr(7)
 		name = name.substr( 0, name.indexOf('/') ).replace('-',' ').title()
-		$( this.container ).append( '<a class="header-btn header-boards woof-crouch" href="' + this.pinned_boards[i] + '">'
-			+ '<span class="app-icon light board-icon"></span> <span class="header-btn-text">'+name+'</span> </a>' )
+		$( this.container ).append( '<a class="header-btn header-boards" href="' + this.pinned_boards[i] + '">'
+			+ '<span class="header-btn-icon icon-lg icon-board light"></span> <span class="header-btn-text">'+name+'</span> </a>' )
 	}
 	this.normalizeScrollPosition()
 }
