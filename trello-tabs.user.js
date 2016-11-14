@@ -38,7 +38,7 @@ var TrelloTabs = function() {
 	var $this = this
 
 	this.main_container = document.createElement('div')
-	this.main_container.setAttribute( "style", "position: absolute; top: 5px; left: 450px; right: 265px;")
+	this.main_container.setAttribute( "style", "position: absolute; top: 5px; left: 310px; right: 265px; z-index: 10;")
 	$( this.main_container ).html( '<a class="header-btn header-boards" style="padding:0" href="#">'
 		+ '<span class="header-btn-icon icon-lg icon-label light" style="background-position: -180px -60px;"></span></a>' )
 	$( this.main_container ).find('a').click( function() { $this.toggleTab() } )
@@ -93,7 +93,7 @@ TrelloTabs.prototype.redraw = function() {
 	$( this.container ).html('')
 	for ( var i = 0; i < this.pinned_boards.length; i++ ) {
 		var name = this.pinned_boards[i].substr(7)
-		name = name.substr( 0, name.indexOf('/') ).replace('-',' ').title()
+		name = name.substr( name.indexOf('/') + 1, name.length - name.indexOf('/') ).replace('-',' ').title();
 		$( this.container ).append( '<a class="header-btn header-boards" href="' + this.pinned_boards[i] + '">'
 			+ '<span class="header-btn-icon icon-lg icon-board light"></span> <span class="header-btn-text">'+name+'</span> </a>' )
 	}
